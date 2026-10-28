@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>NoCloakShroudBuff</AssemblyName>
+    <Description>Shroud of the Forest protection in the Cursed Forest for players who have killed Ben the Old Wanderer, without the cloak</Description>
+    <Version>0.1.0</Version>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>NoCloakShroudBuff</RootNamespace>
+    <Nullable>disable</Nullable>
+    <!-- Keep local paths (user name) out of the DLL's debug info -->
+    <PathMap>$(MSBuildProjectDirectory)=/_/</PathMap>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.733" IncludeAssets="compile" />
+    <PackageReference Include="BepInEx.Core" Version="6.0.0-be.733" IncludeAssets="compile" />
+    <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
+    <PackageReference Include="VRising.Unhollowed.Client" Version="1.1.*" Condition="'$(InteropDir)' == ''" />
+  </ItemGroup>
+  <!-- dotnet build -p:InteropDir=interop: compile against the dedicated server's own BepInEx/interop
+       instead of the NuGet package. The folder is a local copy, not committed. -->
+  <ItemGroup Condition="'$(InteropDir)' != ''">
+    <Reference Include="$(InteropDir)/*.dll" Private="false" />
+  </ItemGroup>
+</Project>
