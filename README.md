@@ -1,6 +1,6 @@
 # NoCloakShroudBuff
 
-> *Ben's blood still remembers the wisp's ward. Drink it, and the curse slides off you as it once did him. No cloak required.*
+> *What Ben could only hold back with cloak and lantern, his blood now holds back for you.*
 
 Once you have killed **Ben the Old Wanderer**, you are protected from the **Curse of the Forest** in the Cursed Forest,
 just as if you were wearing the **Shroud of the Forest**. Wear any cloak you like.
