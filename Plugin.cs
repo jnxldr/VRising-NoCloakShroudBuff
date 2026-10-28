@@ -14,6 +14,8 @@ public class Plugin : BasePlugin
 {
     internal static ManualLogSource Logger;
     internal static ConfigEntry<bool> Enabled;
+    internal static ConfigEntry<int> CheckIntervalSeconds;
+    internal static ConfigEntry<bool> LogChanges;
     internal static ConfigEntry<bool> Dump;
     internal static ConfigEntry<string> DumpPattern;
     internal static ConfigEntry<int> DumpIntervalSeconds;
@@ -27,6 +29,8 @@ public class Plugin : BasePlugin
         Logger = Log;
         Instance = this;
         Enabled = Config.Bind("General", "Enabled", true, "Set to false to turn the mod off (everything stays as in the base game).");
+        CheckIntervalSeconds = Config.Bind("General", "CheckIntervalSeconds", 1, "How often (seconds) online players are checked.");
+        LogChanges = Config.Bind("General", "LogChanges", true, "Log a line each time the buff is applied or removed.");
         Dump = Config.Bind("Discovery", "Dump", false,
             "Write matching prefabs to BepInEx/config/NoCloakShroudBuff/prefabs.txt at start, and log each online player's region, cloak, curse and buffs when they change.");
         DumpPattern = Config.Bind("Discovery", "DumpPattern", "Shroud|Curse|Wanderer|Forest|_VBlood$", "Regular expression for the prefab names to write (case-insensitive).");
@@ -51,11 +55,11 @@ public class Plugin : BasePlugin
     // Called once, after the server world has loaded its prefabs.
     internal static void OnServerReady(World world)
     {
-        if (!Enabled.Value) return;
         try
         {
             ServerWorld = world;
             Logger.LogInfo($"Server ready (world {world.Name})");
+            if (ShroudKeeper.CheckPrefabs(world)) Instance.AddComponent<ShroudKeeper>();
             if (Dump.Value)
             {
                 Discovery.WritePrefabs(world);

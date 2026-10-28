@@ -3,7 +3,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>NoCloakShroudBuff</AssemblyName>
     <Description>Shroud of the Forest protection in the Cursed Forest for players who have killed Ben the Old Wanderer, without the cloak</Description>
-    <Version>0.2.0</Version>
+    <Version>0.3.0</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
     <RootNamespace>NoCloakShroudBuff</RootNamespace>
