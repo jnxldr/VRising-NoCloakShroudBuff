@@ -19,7 +19,7 @@ From the repo root:
 `python -I thunderstore/pack.py` builds the DLL (against `interop/` by default) and writes
 `dist/NoCloakShroudBuff-<version>.zip` with `manifest.json`, `README.md`, `CHANGELOG.md`, `icon.png` and the DLL, all at the
 zip root. The version comes from `NoCloakShroudBuff.csproj`; the description and dependency are in `pack.py`. The icon is
-drawn by `thunderstore/make_icon.py`.
+`thunderstore/icon.png`.
 
 ## How it works
 - Once the server has loaded (`SpawnTeamSystem_OnPersistenceLoad`), it checks the three prefabs it uses by name, then checks
